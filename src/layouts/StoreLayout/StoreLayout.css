@@ -1,0 +1,10 @@
+.store-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: auto;
+    max-width: 100%;
+    overflow: hidden;
+}
+

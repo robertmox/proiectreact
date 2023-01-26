@@ -1,0 +1,26 @@
+.cub {
+    text-align: center;
+    justify-content:center;
+}
+
+.mt-5 {
+    font-size: 25px;
+}
+
+.form-control {
+    height: 120px;
+    width: 500px;
+}
+
+.fa-star {
+    color: #bc9667;
+}
+
+.btn-success {
+    background-color: green;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: rgb(255, 96, 96);
+}
