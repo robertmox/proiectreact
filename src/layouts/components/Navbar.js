@@ -1,91 +1,89 @@
-import './Navbar.css';
+import "./Navbar.css";
 
 import {
-    faHeart,
-    faRightFromBracket,
-    faRightToBracket,
-    faShoppingCart,
-    faUserCircle,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+  faHeart,
+  faRightFromBracket,
+  faRightToBracket,
+  faShoppingCart,
+  faUserCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-import { AuthContext } from '../../contexts/AuthContextProvider';
-import categories from '../../data/categories';
+import { AuthContext } from "../../contexts/AuthContextProvider";
+import categories from "../../data/categories";
+import logoimage from "../../assets/roberts-high-resolution-logo-color-on-transparent-background.png";
 
 export default function Navbar() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
-    const handleAuth = () => {
-        if (isAuthenticated) {
-            setIsAuthenticated(false);
-        } else {
-            navigate('/login');
-        }
-    };
+  const handleAuth = () => {
+    if (isAuthenticated) {
+      setIsAuthenticated(false);
+    } else {
+      navigate("/login");
+    }
+  };
 
-    return (
-        <div className="navbar">
-            <div className="left">
-                <Link className="logo" to="/">Robert's
-                <i class="fa-solid fa-mug-saucer"></i>
-                </Link>
-                <div className="categories">
-                    <ul className="categories-list">
-                        {categories.map((category, index) => {
-                            return (
-                                <li key={index} className="category">
-                                    <Link className="link" to={`/category/${category.id}`}>
-                                        {category.name}
-                                    </Link>
-                                </li>
-                                
-                            );
-                        })}
-                                <li className="category">
-                                    <Link className="link" to="/Rate">
-                                        Rate Us
-                                    </Link>
-                                </li>
-                                <li className="category"> 
-                                    <Link className="link" to="/Contact">
-                                        Contact
-                                    </Link>
-                                </li>
-                    </ul>
-                    
-                    
-                </div>
-            </div>
-            <div className="profile">
-                {isAuthenticated && (
-                    <div className="wishlist-cart">
-                        <Link className="link" to="/wishlist">
-                            <FontAwesomeIcon icon={faHeart} />
-                        </Link>
-                        <Link className="link" to="/cart">
-                            <FontAwesomeIcon icon={faShoppingCart} />
-                        </Link>
-                        <Link className="link" to="/profile">
-                            <FontAwesomeIcon icon={faUserCircle} />
-                        </Link>
-                    </div>
-                )}
-                <button className="login" onClick={() => handleAuth()}>
-                    {!isAuthenticated ? (
-                        <>
-                            <FontAwesomeIcon icon={faRightToBracket} /> Login
-                        </>
-                    ) : (
-                        <>
-                            <FontAwesomeIcon icon={faRightFromBracket} /> Logout
-                        </>
-                    )}
-                </button>
-            </div>
+  return (
+    <div className="navbar">
+      <div className="left">
+        <Link className="logo" to="/">
+          <img src={logoimage} class="logoimg" alt="logo"></img>
+        </Link>
+        <div className="categories">
+          <ul className="categories-list">
+            {categories.map((category, index) => {
+              return (
+                <li key={index} className="category">
+                  <Link className="link" to={`/category/${category.id}`}>
+                    {category.name}
+                  </Link>
+                </li>
+              );
+            })}
+            <li className="category">
+              <Link className="link" to="/Rate">
+                Rate Us
+              </Link>
+            </li>
+            <li className="category">
+              <Link className="link" to="/Contact">
+                Contact
+              </Link>
+            </li>
+          </ul>
         </div>
-    );
+      </div>
+      <div className="profile">
+        {isAuthenticated && (
+          <div className="wishlist-cart">
+            <Link className="link" to="/wishlist">
+              <FontAwesomeIcon icon={faHeart} />
+            </Link>
+            <Link className="link" to="/cart">
+              <FontAwesomeIcon icon={faShoppingCart} />
+            </Link>
+            <Link className="link" to="/profile">
+              <FontAwesomeIcon icon={faUserCircle} />
+            </Link>
+          </div>
+        )}
+        <button className="login" onClick={() => handleAuth()}>
+          {!isAuthenticated ? (
+            <>
+              <FontAwesomeIcon icon={faRightToBracket} /> Login
+            </>
+          ) : (
+            <>
+              <FontAwesomeIcon icon={faRightFromBracket} /> Logout
+            </>
+          )}
+        </button>
+      </div>
+    </div>
+  );
 }
